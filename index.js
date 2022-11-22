@@ -6,6 +6,34 @@ const jwt = require('jsonwebtoken')
 
 app.use(express.json())
 
+mongoose.connect("mongodb://localhost:27017/Task_Cuvette",
+{	
+	useNewUrlParser: true, 
+	useUnifiedTopology: true, 
+	useCreateIndex: true, 
+	useFindAndModify: false
+});
+
+var userSchema = new mongoose.Schema({
+	username : String,
+	address : String
+});
+let user = mongoose.model("User", userSchema);
+
+app.post('/user/address', async (req, res) =>{
+
+  const userdata = await user.create({
+    username : req.body.username,
+    address : req.body.address
+  });
+
+  if(userdata){
+    res.json(userdata);
+  } else {
+    res.json({"Msg":"User Data cannot be created"});
+  }
+})
+
 const posts = [
   {
     username: 'Aniket',

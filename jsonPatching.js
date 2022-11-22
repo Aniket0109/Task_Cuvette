@@ -1,5 +1,5 @@
 const jsonpatch = require("jsonpatch");
-mydoc = {
+let mydoc = {
     "baz": "qux",
     "foo": "bar"
   };
@@ -8,4 +8,3 @@ mydoc = {
   ]
   patcheddoc = jsonpatch.apply_patch(mydoc, thepatch);
   console.log(patcheddoc);
-  // patcheddoc now equals {"baz": "boo", "foo": "bar"}}
