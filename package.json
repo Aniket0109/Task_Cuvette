@@ -4,8 +4,8 @@
   "description": "Intern task",
   "main": "index.js",
   "scripts": {
-    "devStart": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "authStart": "node ./routes/authServer.js",
+    "test": "node index.js"
   },
   "author": "",
   "license": "ISC",
@@ -14,7 +14,8 @@
     "express": "^4.18.2",
     "image-thumbnail": "^1.0.15",
     "jsonpatch": "^3.1.0",
-    "jsonwebtoken": "^8.5.1"
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.7.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"

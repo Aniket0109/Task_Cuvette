@@ -1,20 +1,15 @@
 require('dotenv').config()
 
-let user = require("../modules/userSchema");
+let user = require("../Task_Cuvette/modules/userSchema");
 
 const express = require('express')
+const mongoose = require('mongoose')
 const app = express()
 const jwt = require('jsonwebtoken')
 
 app.use(express.json())
 
-mongoose.connect("mongodb://localhost:27017/Task_Cuvette",
-{	
-	useNewUrlParser: true, 
-	useUnifiedTopology: true, 
-	useCreateIndex: true, 
-	useFindAndModify: false
-});
+mongoose.connect("mongodb://localhost:27017/Task_Cuvette");
 
 app.post('/user/address', async (req, res) =>{
 
