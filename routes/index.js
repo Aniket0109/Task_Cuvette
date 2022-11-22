@@ -1,5 +1,7 @@
 require('dotenv').config()
 
+let user = require("../modules/userSchema");
+
 const express = require('express')
 const app = express()
 const jwt = require('jsonwebtoken')
@@ -13,12 +15,6 @@ mongoose.connect("mongodb://localhost:27017/Task_Cuvette",
 	useCreateIndex: true, 
 	useFindAndModify: false
 });
-
-var userSchema = new mongoose.Schema({
-	username : String,
-	address : String
-});
-let user = mongoose.model("User", userSchema);
 
 app.post('/user/address', async (req, res) =>{
 
