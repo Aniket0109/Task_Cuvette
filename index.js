@@ -4,14 +4,27 @@ let user = require("../Task_Cuvette/modules/userSchema");
 
 const express = require('express')
 const mongoose = require('mongoose')
+const img = require("./routes/imageThumbnail")
+const jPatch = require("./routes/jsonPatching")
 const app = express()
 const jwt = require('jsonwebtoken')
 
 app.use(express.json())
 
-mongoose.connect("mongodb://localhost:27017/Task_Cuvette");
+mongoose.connect("mongodb://127.0.0.1/Task_Cuvette", {
 
-app.post('/user/address', async (req, res) =>{
+  useNewUrlParser: true, 
+  
+  useUnifiedTopology: true 
+  
+  }, err => {
+    if(err) throw err;
+    console.log('Connected to MongoDB!!!')
+    });
+
+const db = mongoose.connection;
+
+app.post('/user/address', authenticateToken, async (req, res) =>{
 
   const userdata = await user.create({
     username : req.body.username,
